@@ -1,0 +1,10 @@
+﻿@page
+@model EMS.Pages.TermPages.TermInsertModel
+@{
+}
+<form method="post">
+  <label for="sem">Semester:&nbsp;</label><br />          <input asp-for="input.Sem" type="text" id="sem"><br /><br />
+  <label for="cid">Course ID:&nbsp;</label><br />            <input asp-for="input.CId" type="number" id="cid"> <br /><br />
+  <label for="pid">Prof ID:&nbsp;</label><br />            <input asp-for="input.PId" type="number" id="pid"> <br /><br />
+  <input type="submit" value="Add">
+</form>

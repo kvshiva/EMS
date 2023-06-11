@@ -1,0 +1,33 @@
+﻿@page
+@model EMS.Pages.TermPages.TermSearchModel
+@{
+}
+<div>
+<form method="post">
+  <label for="sem">Semester:&nbsp;</label><br />          <input asp-for="Input.Sem" type="text" id="sem"><br /><br />
+  <label for="cid">Course ID:&nbsp;</label><br />            <input asp-for="Input.CId" type="number" id="cid"> <br /><br />
+  <label for="pid">Prof ID:&nbsp;</label><br />            <input asp-for="Input.PId" type="number" id="pid"> <br /><br />
+  <label for="pid">Term ID:&nbsp;</label><br />            <input asp-for="Input.Id" type="number" id="id"> <br /><br />
+  <input type="submit" value="Search">
+</form>
+</div>
+<br />
+<div>
+    <table>
+    <tr>
+        <th>&nbsp;Course ID&nbsp;</th>
+        <th>&nbsp;Prof ID&nbsp;</th>
+        <th>&nbsp;Semester&nbsp;</th>
+        <th>&nbsp;Term ID&nbsp;</th>
+    </tr>
+     @foreach (var res in Model.result)
+    {
+      <tr>
+        <td>@res.CId</td>
+        <td>@res.PId</td>
+        <td>@res.Sem</td>
+        <td>@res.Id</td>
+      </tr>
+    }
+</table>
+</div>
