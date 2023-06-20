@@ -1,9 +1,11 @@
 using EMS.Data;
+using EMS.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,9 +32,11 @@ namespace EMS
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+          //  services.AddDbContext<EMSContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultCS")));
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddAuthorization(options => options.AddPolicy("CanSelectCourse", policyBuilder => policyBuilder.RequireClaim("IsStudent")));
             services.AddRazorPages();
             //manually adding api
             services.AddControllers();

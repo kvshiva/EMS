@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Authorization;
 using EMS.Services.TermServices;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using System.Collections.Generic;
 
 namespace EMS.Pages.TermPages
 {
+    [Authorize] //restricts access to terms to users only (any user)
     public class TermSearchModel : PageModel
     {
         [BindProperty]
