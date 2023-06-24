@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 using System;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EMS.Pages.TermPages
 {
+    [Authorize("IsAdmin")]
     public class TermInsertModel : PageModel
     {
         [BindProperty]

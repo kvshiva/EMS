@@ -36,7 +36,12 @@ namespace EMS
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddAuthorization(options => options.AddPolicy("CanSelectCourse", policyBuilder => policyBuilder.RequireClaim("IsStudent")));
+            services.AddAuthorization(options =>
+               {
+                   options.AddPolicy("CanSelectCourse", policyBuilder => policyBuilder.RequireClaim("IsStudent"));
+                   options.AddPolicy("IsStudent", policyBuilder => policyBuilder.RequireClaim("StudentCode"));
+                   options.AddPolicy("IsAdmin", policyBuilder => policyBuilder.RequireClaim("AdminCode"));
+               }) ;
             services.AddRazorPages();
             //manually adding api
             services.AddControllers();

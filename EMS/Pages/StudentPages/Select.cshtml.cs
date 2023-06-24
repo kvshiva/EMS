@@ -5,9 +5,11 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EMS.Pages.StudentPages
 {
+    [Authorize("CanSelectCourse")]
     public class SelectModel : PageModel
     {
         [BindProperty]
